@@ -1,0 +1,175 @@
+1. Write a selenium script to use css locators to find elements on the following webpage -- https://demoqa.com/automation-practice-form 
+
+Code:
+
+package SeleniumScript;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class CssSelectorbyID {
+public static void main(String[] args) {
+
+// TODO Auto-generated method stub
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("https://demoqa.com/automation-practice-form");
+
+WebElement currentAddr1 = driver.findElement(By.cssSelector("textarea[id='currentAddress']"));
+currentAddr1.sendKeys("Ratnagiri ");
+
+WebElement currentAddr2 = driver.findElement(By.cssSelector("textarea#currentAddress"));
+currentAddr2.sendKeys("Chiplun ");
+
+WebElement currentAddr3 = driver.findElement(By.cssSelector("textarea[class='form-control']"));
+currentAddr3.sendKeys("Mahad ");
+
+WebElement currentAddr4 = driver.findElement(By.cssSelector("textarea.form-control"));
+currentAddr4.sendKeys("Kolhapur ");
+
+WebElement currentAddr5 = driver.findElement(By.cssSelector("textarea[placeholder='Current
+Address']"));
+currentAddr5.sendKeys("Mumbai ");
+
+WebElement currentAddr6=
+driver.findElement(By.cssSelector("textarea[id='currentAddress'][placeholder='Current Address']"));
+currentAddr6.sendKeys("Pune ");
+
+WebElement firstName = driver.findElement(By.cssSelector("div>input[placeholder='First
+Name']"));
+firstName.sendKeys("Zubair");
+
+WebElement lastName = driver.findElement(By.cssSelector("input[id^='las']"));
+lastName.sendKeys("Kazi");
+}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+2. Write a selenium script to find elements on http://demo.guru99.com/test/newtours/using id, name, link, partial link locators.
+
+Code:
+
+package SeleniumScript;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class tours {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("https://demo.guru99.com/test/newtours/");
+
+//By Name
+WebElement userName=driver.findElement(By.name("userName"));
+userName.sendKeys("Hrujuta Vidwans");
+
+//By link
+WebElement contact=driver.findElement(By.linkText("CONTACT"));
+contact.click();
+
+//By Partial Link
+WebElement flights = driver.findElement(By.partialLinkText("Fli"));
+flights.click();
+}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+
+3.Write a selenium script to login to http://demo.guru99.com/test/login.html. Use name and ID locator strategy to locate elements.
+
+
+Code:
+
+package first_practical;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Exercise3 {
+
+public static void main(String[] args) {
+	System.setProperty("webdriver.gecko.driver", "E:\\Selenium\\geckodriver.exe");
+	WebDriver driver=new FirefoxDriver();
+	driver.get("https://demo.guru99.com/test/login.html");
+	
+	WebElement email=driver.findElement(By.cssSelector("input[name='email']"));
+	email.sendKeys("bob@gmail.com");
+	
+	WebElement pass=driver.findElement(By.cssSelector("input[id='passwd']"));
+	pass.sendKeys("9561");
+	
+	WebElement button=driver.findElement(By.name("SubmitLogin"));
+	button.click();
+	
+}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+4. Write a script to locate elements on https://demo.guru99.com/test/selenium-xpath.html using xpath. 
+
+Code:
+
+package first_practical;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Exercise4 {
+
+public static void main(String[] args) {
+	System.setProperty("webdriver.gecko.driver", "E:\\Selenium\\geckodriver.exe");
+	WebDriver driver=new FirefoxDriver();
+	driver.get("https://demo.guru99.com/test/selenium-xpath.html");
+	
+	List<WebElement> in=driver.findElements(By.xpath("//*[@type='text']//following::input"));
+	for (int i=0; i<in.size();i++){
+	      System.out.println("Elements are:" + in.get(i).getAttribute("name"));
+	}
+	
+	List<WebElement> ancestor=driver.findElements(By.xpath("//*[text()='Enterprise Test-ing']//ancestor::div"));
+	for (int i=0; i<ancestor.size();i++){
+	      System.out.println("Ancestor are:" + ancestor.get(i).getAttribute("class"));
+	}
+	
+	WebElement preced-ing=driver.findElement(By.xpath("//*[@type='submit']//preceding::input[2]"));
+	System.out.println("Preceding Element is: "+preceding.getAttribute("name"));
+	
+	WebElement sibling=driver.findElement(By.xpath("//*[@type='submit']//following-sibling::input"));
+	System.out.println("Sibling is: "+sibling.getAttribute("name"));
+	
+	WebElement parent=driver.findElement(By.xpath("//*[@type='submit']//parent::td"));
+	System.out.println("Parent is: "+parent.getText());
+	
+	List<WebElement> descend-ant=driver.findElements(By.xpath("//*[@name='frmLogin']//descendant::input"));
+	for (int i=0; i<descendant.size();i++){
+	      System.out.println("Descendant are:" + descend-ant.get(i).getAttribute("name"));
+	}
+}
+}
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+ 

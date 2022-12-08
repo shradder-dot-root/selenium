@@ -1,0 +1,102 @@
+1. Write a selenium script to navigate to https://www.toolsqa.com/selenium-training/ website and perform following actions-1)Click on Registration button link,2) Come back to Home page (Use'Back' command), 3)Again goback to Registration page (This time use 'Forward' command), 4) Again come back to Home page (This time use 'To' command), 5) Refresh the Browser (Use'Refresh' command)
+
+
+Code:
+
+package SeleniumScript;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class seleniumTraining {
+public static void main(String[] args) throws InterruptedException {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("https://www.toolsqa.com/selenium-training/");
+
+WebElement regiBtn=driver.findElement(By.cssSelector("a[href='#enroll-form']"));
+regiBtn.click();
+Thread.sleep(2000);
+
+driver.navigate().back();
+Thread.sleep(2000);
+
+driver.navigate().forward();
+Thread.sleep(2000);
+
+driver.navigate().to("https;//www.toolsqa.com/selenium-training/");
+Thread.sleep(2000);
+driver.navigate().refresh();
+}
+}
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+2. Automate the following test scenarios:
+a) Invoke firefox Browser
+b) Open URL: https://www.google.co.in/
+c) Get Page Title name and Title length
+d) Print Page Title and Title length on the Eclipse Console
+e) Get page URL and verify whether it is the desired page or not
+f) Get page Source and Page Source length
+g) Print page Length on Eclipse Console.
+h) Close the Browser
+
+
+Code: 
+
+package SeleniumScript;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class q2 {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("https://www.google.co.in/");
+
+System.out.println("Title of page "+driver.getTitle());
+System.out.println("Length of Title Page:"+driver.getTitle().length());
+
+System.out.println("Page Url "+driver.getCurrentUrl());
+if(driver.getCurrentUrl().equalsIgnoreCase("https://www.google.co.in/"))
+{
+}
+else {
+System.out.println("First name textbox displayed");
+System.out.println("First name textbox not displayed");
+}
+
+String pageSource=driver.getPageSource();
+System.out.println("Page Source Length:"+pageSource.length());
+driver.close();
+System.out.println("Browser is closed");
+}
+}
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,172 @@
+1. Write a selenium script to handle alert on http://only-testing-blog.blogspot.com/2013/09/test.html
+
+Program:
+
+package SeleniumScript;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class q1_6 {
+ public static void main(String[] args) throws InterruptedException {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("https://only-testing-blog.blogspot.com/2013/09/test.html");
+
+WebElement confirmBtn=driver.findElement(By.cssSelector("button[onclick='myFunction()']"));
+confirmBtn.click();
+Thread.sleep(2000);
+Alert confirmAlert=driver.switchTo().alert();
+confirmAlert.dismiss();
+Thread.sleep(2000);
+
+WebElement simpleAlertBtn=driver.findElement(By.cssSelector("input[value='Show Me 
+Alert']"));
+simpleAlertBtn.click();
+
+Thread.sleep(2000);
+Alert simpleAlert=driver.switchTo().alert();
+simpleAlert.accept();
+ }
+}
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+2. Write a selenium script to handle alerts on https://demoqa.com/alerts.
+
+Program:
+
+package SeleniumScript;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class q2_6 {
+public static void main(String[] args) throwsInterruptedException {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("https://demoqa.com/alerts");
+
+WebElement simpleAlertBtn=driver.findElement(By.id("alertButton"));
+simpleAlertBtn.click();
+Thread.sleep(2000);
+Alert simpleAlert=driver.switchTo().alert();
+simpleAlert.accept();
+Thread.sleep(2000);
+
+WebElement promptAlertBtn=driver.findElement(By.id("promptButton"));
+promptAlertBtn.click();
+Alert promptAlert=driver.switchTo().alert();
+promptAlert.sendKeys("Apurva");
+Thread.sleep(1000);
+promptAlert.accept();
+}
+}
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+3. Write a selenium script to handle alert on http://demo.guru99.com/test/simple_context_menu.html
+
+Program:
+
+package SeleniumScript;
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class q3_6 {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+
+WebDriver driver = new FirefoxDriver();
+driver.get("http://demo.guru99.com/test/simple_context_menu.html\r\n");
+
+List<WebElement> list=driver.findElements(By.tagName("input"));
+list.get(1).sendKeys("abcd@gmail.com");
+list.get(2).sendKeys("abcd@gmail.com");
+}
+}
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+4. Open “train_reservation.html” page and handle the alerts on that page.
+Program:
+
+package SeleniumScript;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class alertdemo {
+public static void main(String[] args) throws InterruptedException {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("file:///E:/samplefiles/train_reservation.html");
+
+//handling simple alert
+
+WebElement trains_link = driver.findElement(By.linkText("Trains"));
+trains_link.click();
+Alert simpleAlert = driver.switchTo().alert();
+Thread.sleep(5000);
+String alertMessage1=simpleAlert.getText();
+
+System.out.println("Alert msg is "+alertMessage1);
+simpleAlert.accept();
+Thread.sleep(5000);
+//handling prompt alert
+WebElement confirm_btn= driver.findElement(By.cssSelector("input[value='Confirm 
+Details']"));
+confirm_btn.click();
+Alert promptAlert= driver.switchTo().alert();
+
+promptAlert.sendKeys("5");
+Thread.sleep(5000);
+promptAlert.accept();
+Thread.sleep(5000);
+
+//handling confirmation alert
+WebElement book_btn = driver.findElement(By.cssSelector("input[value='Book 
+Tickets']"));
+book_btn.click();
+Alert confirmAlert=driver.switchTo().alert();
+String alertMessage2 = confirmAlert.getText();
+System.out.println("Alert message is "+alertMessage2);
+Thread.sleep(3000);
+confirmAlert.dismiss();
+}
+}
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+

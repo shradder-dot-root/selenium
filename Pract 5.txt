@@ -1,0 +1,204 @@
+1. Open “flight_reservation.html” and write a script to handle frames and print heading of page in
+each frame.
+
+Program:
+
+
+package SeleniumScript;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class handlinfIframes {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("file:///E:/samplefiles/flight_reservation.html");
+
+//Switching to frame1 using index
+driver.switchTo().frame(0);
+
+WebElement frame1_heading=driver.findElement(By.id("heading1"));
+System.out.println("Heading of frame1 is "+frame1_heading.getText());
+
+driver.switchTo().defaultContent();
+System.out.println("Title of main window is "+driver.getTitle());
+System.out.println("Switched to main window");
+
+//Switching to frame 2 using name or id
+driver.switchTo().frame("IF2");
+
+WebElement frame2_heading=driver.findElement(By.id("heading2"));
+System.out.println("Heading of frame2 is "+frame2_heading.getText());
+
+//switching to child iframe inside frame2
+driver.switchTo().frame(0);
+System.out.println("Switched to child frame 2");
+WebElement childFrame_heading=driver.findElement(By.id("heading3"));
+
+System.out.println("Heading of child frame inside Frame 2 is "+childFrame_heading.getText());
+
+driver.switchTo().defaultContent();
+System.out.println("Switched to main window");
+System.out.println("Title of main window is "+driver.getTitle());
+}
+}
+
+
+
+------------------------------------------------------------------------------------------------------------
+
+
+2. Open “flight_reservation.html” and write a script to handle popup window that opens after clicking on “Hotels” Hyperlink and print title of the popup window and heading on that page.
+
+
+Program:
+
+
+package SeleniumScript;
+
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class handlingPopups {
+public static void main(String[] args) throws InterruptedException {
+
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("file:///E:/samplefiles/flight_reservation.html");
+
+System.out.println("Title of main window is "+driver.getTitle());
+String mainWindow = driver.getWindowHandle();
+System.out.println("ID of Main Window is "+mainWindow);
+
+WebElement hotel_link=driver.findElement(By.linkText("Hotels"));
+hotel_link.click();
+window
+
+Set<String> handles = driver.getWindowHandles();
+for(String windowHandle : handles) {
+if(!windowHandle.equals(mainWindow)) {
+
+driver.switchTo().window(windowHandle);//switch to first child
+System.out.println("Title of ChildWindow is "+driver.getTitle());
+
+System.out.println("ID of ChildWindow is "+driver.getWindowHandle());
+"+heading.getText());
+
+WebElement heading = driver.findElement(By.id("sampleHeading"));
+System.out.println("heading inside ChildWindow is
+Thread.sleep(3000);
+driver.close();
+}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+
+3. Open https://demoqa.com/browser-windows and write a script to handle multiple windowsthat opens
+after clicking button “New Window” and printthe heading on that new window.
+
+Program:
+
+package SeleniumScript;
+
+import java.util.Set;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class browserWindows {
+public static void main(String[] args) throws InterruptedException {
+// TODO Auto-generated method stub
+
+System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("https://demoqa.com/browser-windows");
+
+String mainWindow= driver.getWindowHandle();
+System.out.println("Main Window Handle "+mainWindow);
+
+System.out.println("Title of Main Window "+driver.getTitle());
+
+WebElement newWindowBtn=driver.findElement(By.id("windowButton"));
+newWindowBtn.click();
+Set<String> handles=driver.getWindowHandles();
+for(String windowHandle:handles) {
+if(!windowHandle.equals(mainWindow)) {
+driver.switchTo().window(windowHandle);
+
+WebElement heading= driver.findElement(By.tagName(("h1")));
+System.out.println("Heading "+heading.getText());
+Thread.sleep(2000);
+driver.close();
+}
+}
+}
+}
+
+
+------------------------------------------------------------------------------------------------------------
+
+4.Open “hotel_search.html” page and handle modals that appear after clicking on buttons on that webpage.
+
+Program:
+
+package SeleniumScript;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+//import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class handlingModels {
+public static void main(String[] args) throwsInterruptedException {
+// TODO Auto-generated method stub
+//System.setProperty("webdriver.chrome.driver", "E:\\Selenium\\chromedriver.exe");
+//WebDriver driver=new ChromeDriver();
+
+System.setProperty("webdriver.gecko.driver","E:\\Selenium\\geckodriver.exe");
+WebDriver driver = new FirefoxDriver();
+driver.get("file:///E:/samplefiles/hotel_search.html");
+
+//WebElement hotels =driver.findElement(By.cssSelector("button[datatarget='#myModal']"));
+
+//hotels.click();
+title']"));
+
+//WebElement modal_header1= driver.findElement(By.xpath("//h4[@class='modal-
+//System.out.println("Modal Headeris "+modal_header1.getText());
+//WebElement ok_btn= driver.findElement(By.xpath("//button[text()='Ok']"));
+//Thread.sleep(2000);
+//ok_btn.click();
+
+WebElement book_room =driver.findElement(By.cssSelector("button[id=myBtn1]"));
+book_room.click();
+
+WebElement htlname= driver.findElement(By.id("htlname"));
+htlname.sendKeys("Shivtej");
+
+WebElement no_of_person= driver.findElement(By.id("prs"));
+no_of_person.sendKeys("50");
+
+WebElement no_of_days= driver.findElement(By.id("days"));
+no_of_days.sendKeys("5");
+
+WebElement cancel=driver.findElement(By.xpath("//button[@type='submit']//following::button"));
+Thread.sleep(2000);
+cancel.click();
+}
+}
+
+
+
+------------------------------------------------------------------------------------------------------------
